@@ -14,3 +14,83 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes lyricGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes lyricSheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes lyricPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.lyric-active {
+  position: relative;
+  isolation: isolate;
+}
+
+.lyric-active::before,
+.lyric-active::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.lyric-active::before {
+  background: radial-gradient(
+      circle at top left,
+      rgba(16, 185, 129, 0.4),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(6, 182, 212, 0.35),
+      transparent 55%
+    );
+  animation: lyricGlow 6s ease-in-out infinite;
+}
+
+.lyric-active::after {
+  background: linear-gradient(
+    120deg,
+    rgba(16, 185, 129, 0.35),
+    rgba(59, 130, 246, 0.25),
+    rgba(16, 185, 129, 0.35)
+  );
+  background-size: 200% 200%;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  animation: lyricSheen 8s ease-in-out infinite;
+}
+
+.lyric-pulse {
+  animation: lyricPulse 3.5s ease-in-out infinite;
+}
