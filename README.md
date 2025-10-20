@@ -36,6 +36,12 @@ npm run build
 npm run lint
 ```
 
+## Netlify Deployment
+- Connect your Netlify site to this repository (Site settings → Build & deploy → Continuous Deployment).
+- The included `netlify.toml` already sets the build command (`npm run build`), publish directory (`dist`), and Node.js version (`20`), so no extra configuration is needed.
+- Push your changes to the connected branch; Netlify will run the build and publish automatically.
+- To trigger a manual deploy, run `npm run build` locally and then `npx netlify deploy --dir=dist --prod`.
+
 ## Project Structure
 ```
 src/
